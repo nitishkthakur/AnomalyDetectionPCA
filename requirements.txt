@@ -10,3 +10,4 @@ fastapi[standard]
 httpx
 htmx
 cassandra-driver
+matplotlib
