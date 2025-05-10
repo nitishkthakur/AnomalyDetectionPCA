@@ -11,3 +11,4 @@ httpx
 htmx
 cassandra-driver
 matplotlib
+seaborn
