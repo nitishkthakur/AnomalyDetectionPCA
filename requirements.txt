@@ -13,4 +13,4 @@ cassandra-driver
 matplotlib
 seaborn
 python-dotenv
-
+pyod
