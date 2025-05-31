@@ -14,3 +14,4 @@ matplotlib
 seaborn
 python-dotenv
 pyod
+itables
