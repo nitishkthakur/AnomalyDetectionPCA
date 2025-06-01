@@ -1,5 +1,26 @@
 import pytest
 from base import AnomalyDetectorPCA
+import numpy as np
+import pandas as pd
+
+
+@pytest.fixture
+def sample_normal_data():
+    """
+    Creates a dataset that represents 'normal' behavior.
+    Think of this as data from a well-functioning system with slight variations.
+    """
+    np.random.seed(42)  # For reproducible tests
+    n_samples = 100
+
+    # Create correlated features (like temperature and pressure might be)
+    feature1 = np.random.normal(10, 2, n_samples)  # Mean=10, std=2
+    feature2 = feature1 * 0.8 + np.random.normal(
+        0, 0.5, n_samples
+    )  # Correlated with feature1
+    feature3 = np.random.normal(5, 1, n_samples)  # Independent feature
+
+    return pd.DataFrame({"sensor1": feature1, "sensor2": feature2, "sensor3": feature3})
 
 
 class TestAnomalyDetectorBasics:
