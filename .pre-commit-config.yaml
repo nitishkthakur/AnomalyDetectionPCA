@@ -16,10 +16,4 @@ repos:
       entry: pytest
       language: system
       files: ^(tests/.*\.py|.*test.*\.py|test_.*\.py)$
-      args: [
-        "-v",
-        "-m", "not slow",      # Skip tests marked as @pytest.mark.slow
-        "--tb=line",           # Even shorter traceback
-        "--disable-warnings",
-        "-x"                   # Stop on first failure
-      ]
+      args: ["-v"]
