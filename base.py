@@ -12,7 +12,7 @@ class AnomalyDetectorPCA:
         self.threshold = threshold
 
     def fit(self, X: pd.DataFrame):
-        self.data_columns = X.columns
+        self.data_columns = X.columns.tolist()
         self.pca = pipeline.make_pipeline(
             preprocessing.StandardScaler(),
             decomposition.PCA(n_components=self.n_components),
