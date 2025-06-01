@@ -7,3 +7,19 @@ repos:
     - id: ruff-check
     # Run the formatter.
     - id: ruff-format
+    
+- repo: local
+  hooks:
+    - id: pytest-fast
+      name: "Run Fast Tests"
+      description: "Run only fast tests before committing"
+      entry: pytest
+      language: system
+      files: ^(tests/.*\.py|.*test.*\.py|test_.*\.py)$
+      args: [
+        "-v",
+        "-m", "not slow",      # Skip tests marked as @pytest.mark.slow
+        "--tb=line",           # Even shorter traceback
+        "--disable-warnings",
+        "-x"                   # Stop on first failure
+      ]
