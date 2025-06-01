@@ -1,0 +1,47 @@
+# .github/workflows/ci.yml
+# Minimal CI pipeline: Ruff (linting + formatting) + pytest
+
+name: CI
+
+# When to run this workflow
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# The jobs to run
+jobs:
+  test:
+    name: "Lint & Test"
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Get the code
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install ruff pytest
+        pip install -r requirements.txt
+    
+    # Check code formatting
+    - name: Check formatting
+      run: ruff format --check .
+    
+    # Run linter
+    - name: Lint code
+      run: ruff check .
+    
+    # Run tests
+    - name: Run tests
+      run: pytest -v
